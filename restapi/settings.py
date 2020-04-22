@@ -22,7 +22,7 @@ students_schema = {
     },
     'phone_number': {
         'type': 'string',
-        'minlength': 10
+        'minlength': 10,
         'maxlength': 10
     },
     'status': {

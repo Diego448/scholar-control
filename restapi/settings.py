@@ -1,3 +1,6 @@
 MONGO_HOST = 'localhost'
 MONGO_PORT = 27017
 MONGO_DBNAME = 'scholar-control'
+
+RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
+ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']

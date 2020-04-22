@@ -6,6 +6,12 @@ def get_students():
     r = requests.get('http://127.0.0.1:5000/students')
     return r.json()
 
+def add_student(data):
+    headers = {
+        'content-type': 'application/json'
+    }
+    requests.post('http://127.0.0.1:5000/students', data, headers)
+
 @app.route('/directory/students')
 def student_directory(students={}):
     students_data = get_students()

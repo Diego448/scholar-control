@@ -18,7 +18,7 @@ student_schema = {
     },
     'location': {
         'type': 'string',
-        'required' = True
+        'required': True
     },
     'phone_number': {
         'type': 'string',

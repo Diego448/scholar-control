@@ -15,10 +15,10 @@ students_schema = {
         'type': 'string', 
         'minlength': 3,
         'required': True
-    }
+    },
     'location': {
         'type': 'string',
-        'required' = True
+        'required': True
     },
     'phone_number': {
         'type': 'string',

@@ -22,7 +22,7 @@ def create_student():
     if request.method == 'POST':
         new_student = {'firstname': request.form['firstname'], 'lastname': request.form['lastname'],
         'location': request.form['location'], 'phone_number': request.form['phone_number'],
-        'status': request.form['status']}
+        'status': hasattr(request.form, 'status')}
         add_student(new_student)
         return redirect(url_for('student_directory'))
     return render_template("add_student.html")

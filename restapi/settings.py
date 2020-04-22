@@ -5,7 +5,7 @@ MONGO_DBNAME = 'scholar-control'
 RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']
 
-students_schema = {
+student_schema = {
     'firstname': {
         'type': 'string', 
         'minlength': 3,
@@ -18,7 +18,7 @@ students_schema = {
     },
     'location': {
         'type': 'string',
-        'required': True
+        'required' = True
     },
     'phone_number': {
         'type': 'string',
@@ -28,4 +28,13 @@ students_schema = {
     'status': {
         'type': 'boolean'
     }
+}
+
+students = {
+    'item_title': 'student',
+    'schema': student_schema
+}
+
+DOMAIN = {
+    'students': students
 }

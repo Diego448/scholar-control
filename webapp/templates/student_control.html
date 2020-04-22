@@ -16,8 +16,14 @@
             </tr>
         </thead>
         <tbody>
-            {% for %}
-
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.firstname }}</td>
+                    <td>{{ student.lastname }}</td>
+                    <td>{{ student.location }}</td>
+                    <td>{{ student.phone_number }}</td>
+                    <td>{{ student.status }}</td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import json, requests
 app = Flask(__name__)
 
@@ -22,6 +22,7 @@ def create_student():
     if request.method == 'POST':
         new_student = {'firstname': request.form['firstname'], 'lastname': request.form['lastname'],
         'location': request.form['location'], 'phone_number': request.form['phone_number'],
-        'status': request.form['status']}
-        return None
+        'status': False}
+        add_student(new_student)
+        return redirect(url_for('student_directory'))
     return render_template("add_student.html")

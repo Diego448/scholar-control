@@ -40,6 +40,9 @@ def create_student():
 @app.route('/edit/student/<student_id>', methods=['GET', 'POST'])
 def edit_student(student_id):
     if request.method == 'POST':
-        update_student()
+        updated_data = {'firstname': request.form['firstname'], 'lastname': request.form['lastname'], 
+        'location': request.form['location'], 'phone_number': request.form['phone_number'], 
+        'status': get_status(request.form)}
+        update_student(student_id, updated_data)
     student_data = get_student_data(id)
     return render_template("edit_student.html", student_data=student_data)

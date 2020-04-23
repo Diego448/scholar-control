@@ -7,7 +7,7 @@ def get_students():
     return r.json()
 
 def get_student_data(id):
-    r = requests.get('http://127.0.0.1:5000/students' + id)
+    r = requests.get('http://127.0.0.1:5000/students/' + id)
     return r.json()
 
 def add_student(data):
@@ -52,5 +52,5 @@ def edit_student(student_id):
         'location': request.form['location'], 'phone_number': request.form['phone_number'], 
         'status': get_status(request.form)}
         update_student(student_id, updated_data)
-    student_data = get_student_data(id)
+    student_data = get_student_data(student_id)
     return render_template("edit_student.html", student_data=student_data)

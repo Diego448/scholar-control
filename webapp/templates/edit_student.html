@@ -6,10 +6,10 @@
 <body>
     <h1>Agregar estudiante</h1>
     <form method="PATCH">
-        <input type="text" name="firstname" id="firstname" value={{}} required>
-        <input type="text" name="lastname" id="lastname" value={{}} required>
-        <input type="text" name="location" id="location" value={{}} required>
-        <input type="tel" name="phone_number" id="phone_number" value={{}} required>
+        <input type="text" name="firstname" id="firstname" value="{{ student_data.firstname }}" required>
+        <input type="text" name="lastname" id="lastname" value="{{ student_data.lastname }}" required>
+        <input type="text" name="location" id="location" value="{{ student_data.location }}" required>
+        <input type="tel" name="phone_number" id="phone_number" value="{{ student_data.phone_number }}" required>
         <input type="checkbox" name="status" id="status" value="True">
         <input type="submit" value="Guardar">
     </form>

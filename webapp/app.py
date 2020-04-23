@@ -52,5 +52,6 @@ def edit_student(student_id):
         'location': request.form['location'], 'phone_number': request.form['phone_number'], 
         'status': get_status(request.form)}
         update_student(student_id, updated_data)
+        return redirect(url_for('student_directory'))
     student_data = get_student_data(student_id)
     return render_template("edit_student.html", student_data=student_data)

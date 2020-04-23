@@ -12,6 +12,12 @@ def add_student(data):
     }
     requests.post('http://127.0.0.1:5000/students', json=data, headers=headers)
 
+def update_student(student_id, data):
+    headers = {
+        'content-type': 'application/json', 
+        'If-Match': str(etag)}
+    requests.patch('http://127.0.0.1:5000/students/' + student_id, json=data, headers=headers)
+
 @app.route('/directory/students')
 def student_directory(students={}):
     students_data = get_students()

@@ -32,3 +32,7 @@ def create_student():
         add_student(new_student)
         return redirect(url_for('student_directory'))
     return render_template("add_student.html")
+
+@app.route('/edit/student/<student_id>')
+def edit_student(student_id):
+    return student_id

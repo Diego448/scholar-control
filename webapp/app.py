@@ -16,12 +16,12 @@ def add_student(data):
     }
     requests.post('http://127.0.0.1:5000/students', json=data, headers=headers)
 
-def update_student(student_id, data):
-    current_data = get_student_data(student_id)
-    etag = current_data['_etag']
+def update_student(student_id student_etag, data):
+    #current_data = get_student_data(student_id)
+    #etag = current_data['_etag']
     headers = {
         'content-type': 'application/json', 
-        'If-Match': str(etag)}
+        'If-Match': str(student_etag)}
     requests.patch('http://127.0.0.1:5000/students/' + student_id, json=data, headers=headers)
 
 def get_status(data):
@@ -51,7 +51,7 @@ def edit_student(student_id):
         updated_data = {'firstname': request.form['firstname'], 'lastname': request.form['lastname'], 
         'location': request.form['location'], 'phone_number': request.form['phone_number'], 
         'status': get_status(request.form)}
-        update_student(student_id, updated_data)
+        update_student(student_id, request.form['etag'], updated_data)
         return redirect(url_for('student_directory'))
     student_data = get_student_data(student_id)
     return render_template("edit_student.html", student_data=student_data)

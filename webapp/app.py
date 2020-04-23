@@ -6,6 +6,10 @@ def get_students():
     r = requests.get('http://127.0.0.1:5000/students')
     return r.json()
 
+def get_student_data(id):
+    r = requests.get('http://127.0.0.1:5000/students' + id)
+    return r.json()
+
 def add_student(data):
     headers = {
         'content-type': 'application/json'
@@ -33,6 +37,9 @@ def create_student():
         return redirect(url_for('student_directory'))
     return render_template("add_student.html")
 
-@app.route('/edit/student/<student_id>')
+@app.route('/edit/student/<student_id>', methods=['GET', 'POST'])
 def edit_student(student_id):
-    return student_id
+    if request.method == 'POST':
+        update_student()
+    student_data = get_student_data(id)
+    return render_template("edit_student.html", student_data=student_data)

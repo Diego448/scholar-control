@@ -16,11 +16,19 @@ def add_student(data):
     }
     requests.post('http://127.0.0.1:5000/students', json=data, headers=headers)
 
+<<<<<<< HEAD
+def update_student(student_id, data):
+    headers = {
+        'content-type': 'application/json', 
+        'If-Match': str(etag)}
+    requests.patch('http://127.0.0.1:5000/students/' + student_id, json=data, headers=headers)
+=======
 def get_status(data):
     if 'status' in data:
         return True
     else:
         return False
+>>>>>>> baa3f85b436b4494dd9c3a5a60803b9110d30dd5
 
 @app.route('/directory/students')
 def student_directory(students={}):

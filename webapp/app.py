@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, redirect, url_for
 import json, requests
 app = Flask(__name__)
 
+base_url = 'http://127.0.0.1:5000/'
+students_resource_url = base_url + 'students'
+courses_resource_url = base_url + 'courses'
+
 def get_students():
     r = requests.get('http://127.0.0.1:5000/students')
     return r.json()
@@ -15,6 +19,19 @@ def add_student(data):
         'content-type': 'application/json'
     }
     requests.post('http://127.0.0.1:5000/students', json=data, headers=headers)
+
+def get_courses():
+    r = requests.get(courses_resource_url)
+    return r.json()
+
+def get_course_data(id):
+    r = requests.get(courses_resource_url + id)
+    return r.json()
+
+def add_course(data):
+    headers = {'content-type': 'application/json'}
+    r = requests.post(courses_resource_url, json=data, headers=headers)
+    return r.status_code
 
 def update_student(student_id, student_etag, data):
     #current_data = get_student_data(student_id)
@@ -59,7 +76,7 @@ def edit_student(student_id):
 @app.route('/')
 def homepage():
     return render_template("homepage.html")
-    
+
 @app.errorhandler(404)
 def error_404(error):
     return render_template("error_404.html"), 404

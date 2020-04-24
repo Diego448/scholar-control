@@ -59,6 +59,7 @@ def edit_student(student_id):
 @app.route('/')
 def homepage():
     return render_template("homepage.html")
+    
 @app.errorhandler(404)
 def error_404(error):
     return render_template("error_404.html"), 404

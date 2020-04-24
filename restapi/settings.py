@@ -55,7 +55,7 @@ course_schema = {
         'required': None
     },
     'status': {
-        'type': 'string'
+        'type': 'string',
         'allowed': ['Programado', 'Iniciado', 'Terminado', 'Cancelado']
     }
 }

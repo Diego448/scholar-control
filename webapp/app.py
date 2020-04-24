@@ -55,3 +55,7 @@ def edit_student(student_id):
         return redirect(url_for('student_directory'))
     student_data = get_student_data(student_id)
     return render_template("edit_student.html", student_data=student_data)
+
+@app.errorhandler(404)
+def error_404(error):
+    return render_template("error_404.html"), 404

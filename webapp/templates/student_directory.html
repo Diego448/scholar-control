@@ -13,6 +13,7 @@
                 <th>Localidad</th>
                 <th>Teléfono</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@
                     <td>{{ student.location }}</td>
                     <td>{{ student.phone_number }}</td>
                     <td>{{ student.status }}</td>
+                    <td><a href="{{ url_for('edit_student', student_id=student._id) }}">Editar</a></td>
                 </tr>
             {% endfor %}
         </tbody>

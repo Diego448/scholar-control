@@ -56,6 +56,12 @@ def edit_student(student_id):
     student_data = get_student_data(student_id)
     return render_template("edit_student.html", student_data=student_data)
 
+<<<<<<< HEAD
 @app.route('/')
 def homepage():
     return render_template("homepage.html")
+=======
+@app.errorhandler(404)
+def error_404(error):
+    return render_template("error_404.html"), 404
+>>>>>>> f14d14e38d37b6447102c1512c2c045582452adf

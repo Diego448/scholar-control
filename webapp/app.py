@@ -16,7 +16,7 @@ def add_student(data):
     }
     requests.post('http://127.0.0.1:5000/students', json=data, headers=headers)
 
-def update_student(student_id student_etag, data):
+def update_student(student_id, student_etag, data):
     #current_data = get_student_data(student_id)
     #etag = current_data['_etag']
     headers = {
@@ -55,3 +55,7 @@ def edit_student(student_id):
         return redirect(url_for('student_directory'))
     student_data = get_student_data(student_id)
     return render_template("edit_student.html", student_data=student_data)
+
+@app.route('/')
+def homepage():
+    return render_template("homepage.html")

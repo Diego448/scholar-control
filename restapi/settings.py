@@ -30,17 +30,18 @@ student_schema = {
     }
 }
 
-course_schema {
+course_schema = {
     'name': {
         'type': 'string',
         'required': True
     },
-    'tacher': {
+    'teacher': {
         'type': 'string',
         'required': True
     },
     'students':{
-        'type': 'list'
+        'type': 'list',
+        'default': []
     },
     'start': {
         'type': 'datetime',
@@ -48,6 +49,10 @@ course_schema {
     },
     'end': {
         'type': 'datetime'
+    },
+    'cost': {
+        'type': 'float',
+        'required': None
     },
     'status': {
         'type': 'string'

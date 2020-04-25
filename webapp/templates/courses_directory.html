@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <meta encoding="utf-8">
+    <title>Courses control</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('create_course') }}">Agregar curso</a></li>
+        </ul>
+    </nav>
+    <h1>Courses control</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del curso</th>
+                <th>Profesor</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de termino</th>
+                <th>Costo</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+                <tr>
+                    <td>{{ course.name }}</td>
+                    <td>{{ course.teacher }}</td>
+                    <td>{{ course.start|truncate(17, True, ' ') }}</td>
+                    <td>{{ course.end|truncate(17, True, ' ') }}</td>
+                    <td>{{ course.cost }}</td>
+                    <td>{{ course.status }}</td>
+                    <td><a href="{{ url_for('homepage') }}">Editar</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>

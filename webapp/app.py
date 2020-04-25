@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json, requests
+from datetime import datetime, date, time
 app = Flask(__name__)
 
 base_url = 'http://127.0.0.1:5000/'
 students_resource_url = base_url + 'students'
 courses_resource_url = base_url + 'courses'
+
 
 def get_students():
     r = requests.get('http://127.0.0.1:5000/students')
@@ -47,6 +49,12 @@ def get_status(data):
     else:
         return False
 
+def get_formatted_date(date_string):
+    new_date = date.fromisoformat(date_string)
+    default_time = time(12, 00)       
+    new_datetime = datetime.combine(new_date, default_time)
+    return new_datetime.strftime("%a, %d %b %Y %H:%M:%S GMT")
+
 @app.route('/directory/students')
 def student_directory(students={}):
     students_data = get_students()
@@ -80,3 +88,19 @@ def homepage():
 @app.errorhandler(404)
 def error_404(error):
     return render_template("error_404.html"), 404
+
+@app.route('/directory/courses')
+def courses_directory(courses={}):
+    courses_data = get_courses()
+    return render_template("courses_directory.html", courses=courses_data['_items'])
+
+@app.route('/add/course', methods=['GET', 'POST'])
+def create_course():
+    if request.method == 'POST':
+        new_course = {"name": request.form['name'], "teacher": request.form['teacher'],
+        "start":  get_formatted_date(request.form['start']), 
+        "end": get_formatted_date(request.form['end']), "cost": request.form['cost'],
+        "status": request.form['status']}
+        add_course(new_course)
+        return redirect(url_for('courses_directory'))
+    return render_template("add_course.html")

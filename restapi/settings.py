@@ -45,14 +45,15 @@ course_schema = {
     },
     'start': {
         'type': 'datetime',
-        'required': True
+        'required': False
     },
     'end': {
-        'type': 'datetime'
+        'type': 'datetime',
+        'required': False
     },
     'cost': {
         'type': 'float',
-        'required': None
+        'required': False
     },
     'status': {
         'type': 'string',

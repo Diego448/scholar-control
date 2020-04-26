@@ -7,7 +7,6 @@ base_url = 'http://127.0.0.1:5000/'
 students_resource_url = base_url + 'students'
 courses_resource_url = base_url + 'courses'
 
-
 def get_students():
     r = requests.get('http://127.0.0.1:5000/students')
     return r.json()
@@ -22,19 +21,6 @@ def add_student(data):
     }
     requests.post('http://127.0.0.1:5000/students', json=data, headers=headers)
 
-def get_courses():
-    r = requests.get(courses_resource_url)
-    return r.json()
-
-def get_course_data(id):
-    r = requests.get(courses_resource_url + id)
-    return r.json()
-
-def add_course(data):
-    headers = {'content-type': 'application/json'}
-    r = requests.post(courses_resource_url, json=data, headers=headers)
-    return r.status_code
-
 def update_student(student_id, student_etag, data):
     #current_data = get_student_data(student_id)
     #etag = current_data['_etag']
@@ -42,6 +28,24 @@ def update_student(student_id, student_etag, data):
         'content-type': 'application/json', 
         'If-Match': str(student_etag)}
     requests.patch('http://127.0.0.1:5000/students/' + student_id, json=data, headers=headers)
+
+def get_courses():
+    r = requests.get(courses_resource_url)
+    return r.json()
+
+def get_course_data(id):
+    r = requests.get(courses_resource_url + '/' + id)
+    return r.json()
+
+def add_course(data):
+    headers = {'content-type': 'application/json'}
+    r = requests.post(courses_resource_url, json=data, headers=headers)
+    return r.status_code
+
+def update_course(course_id, course_etag, data):
+    headers = headers = {'content-type': 'application/json', 'If-Match': str(course_etag)}
+    r = requests.patch(courses_resource_url + '/' + course_id, json=data, headers=headers)
+    return r.status_code
 
 def get_status(data):
     if 'status' in data:

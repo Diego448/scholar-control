@@ -134,6 +134,6 @@ def toisoformat(input_string):
 def teachers_directory():
     return render_template("add_teachers.html")
 
-@app.route('/app/teachers')
+@app.route('/add/teachers')
 def add_teachers():
     return render_template("add_teachers.html")

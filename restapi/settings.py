@@ -62,7 +62,6 @@ course_schema = {
 }
 
 teacher_schema = {
-
     'firstname': {
         'type': 'string', 
         'minlength': 3,
@@ -105,6 +104,6 @@ teachers = {
 
 DOMAIN = {
     'students': students,
-    'courses': courses
+    'courses': courses,
     'teachers': teachers
 }

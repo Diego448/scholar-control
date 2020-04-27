@@ -74,7 +74,7 @@ teacher_schema = {
         'required': True
     },
     'students_number': {
-        'type': 'string',
+        'type': 'integer',
         'required': False
     },
     'phone_number': {
@@ -96,6 +96,11 @@ students = {
 courses = {
     'item_title': 'course',
     'schema': course_schema
+}
+
+teachers = {
+    'item_title': 'Teachers',
+    'schema': teacher_schema
 }
 
 

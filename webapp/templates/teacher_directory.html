@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <meta encoding="utf-8">
+    <title>Teacher directory</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <!--<li><a href="{{ url_for('create_teacher') }}">Agregar docente</a></li>-->
+        </ul>
+    </nav>
+    <h1>Teacher control</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Teléfono</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for teacher in teachers %}
+                <tr>
+                    <td>{{ teacher.firstname }}</td>
+                    <td>{{ teacher.lastname }}</td>
+                    <td>{{ teacher.phone_number }}</td>
+                    <td>{{ teacher.status }}</td>
+                    <!--<td><a href="{{ url_for('edit_teacher', teacher_id=teacher._id) }}">Editar</a></td>-->
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>

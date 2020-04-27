@@ -59,6 +59,10 @@ def get_formatted_date(date_string):
     new_datetime = datetime.combine(new_date, default_time)
     return new_datetime.strftime("%a, %d %b %Y %H:%M:%S GMT")
 
+def get_teachers():
+    r = requests.get('http://127.0.0.1:5000/teachers')
+    return r.json()
+
 @app.route('/directory/students')
 def student_directory(students={}):
     students_data = get_students()
@@ -132,7 +136,8 @@ def toisoformat(input_string):
 
 @app.route('/directory/teachers')
 def teachers_directory():
-    return render_template("add_teachers.html")
+    teachers_data = get_teachers()
+    return render_template("teacher_directory.html", teachers=teachers_data['_items'])
 
 @app.route('/app/teachers')
 def add_teachers():

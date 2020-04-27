@@ -130,10 +130,10 @@ def toisoformat(input_string):
     return "Fecha no asignada"
 
 
-@app.route('/directory/teachers')
+@app.route('/directory/teacher')
 def teachers_directory():
-    return render_template("add_teachers.html")
+    return render_template("add_teacher.html")
 
-@app.route('/add/teachers')
+@app.route('/add/teacher')
 def add_teachers():
-    return render_template("add_teachers.html")
+    return render_template("add_teacher.html")

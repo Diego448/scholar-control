@@ -106,5 +106,5 @@ teachers = {
 DOMAIN = {
     'students': students,
     'courses': courses
-    'Teachers': teachers
+    'teachers': teachers
 }

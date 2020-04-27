@@ -61,6 +61,33 @@ course_schema = {
     }
 }
 
+teacher_schema = {
+
+    'firstname': {
+        'type': 'string', 
+        'minlength': 3,
+        'required': True
+    },
+    'lastname': {
+        'type': 'string', 
+        'minlength': 3,
+        'required': True
+    },
+    'students_number': {
+        'type': 'string',
+        'required': False
+    },
+    'phone_number': {
+        'type': 'string',
+        'minlength': 10,
+        'maxlength': 10
+    },
+    'status': {
+        'type': 'string'
+        'allowed': ['Disponible', 'No disponible']
+    }
+}
+
 students = {
     'item_title': 'student',
     'schema': student_schema
@@ -70,6 +97,7 @@ courses = {
     'item_title': 'course',
     'schema': course_schema
 }
+
 
 DOMAIN = {
     'students': students,

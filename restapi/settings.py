@@ -83,7 +83,7 @@ teacher_schema = {
         'maxlength': 10
     },
     'status': {
-        'type': 'string'
+        'type': 'string',
         'allowed': ['Disponible', 'No disponible']
     }
 }

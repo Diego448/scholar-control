@@ -147,4 +147,10 @@ def teachers_directory():
 
 @app.route('/add/teacher')
 def add_teachers():
+    if request.method == 'POST':
+        new_teacher = {'firstname': request.form['firstname'], 'lastname': request.form['lastname'],
+        'students_number': request.form['student_numbers'], 'phone_number': request.form['phone_number'],
+        'status': get_status(request.form['status'])}
+        add_teacher(new_teacher)
+        return redirect(url_for('teachers_directory'))
     return render_template("add_teacher.html")

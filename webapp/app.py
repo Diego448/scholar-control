@@ -136,12 +136,8 @@ def toisoformat(input_string):
 
 @app.route('/directory/teacher')
 def teachers_directory():
-<<<<<<< HEAD
     teachers_data = get_teachers()
     return render_template("teacher_directory.html", teachers=teachers_data['_items'])
-=======
-    return render_template("add_teacher.html")
->>>>>>> f1e8e03af61231f26d9790175e207393b3ab5666
 
 @app.route('/add/teacher')
 def add_teachers():

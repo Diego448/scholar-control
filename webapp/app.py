@@ -128,3 +128,12 @@ def toisoformat(input_string):
         input_datetime = datetime.strptime(input_string, '%a, %d %b %Y %H:%M:%S GMT')
         return input_datetime.strftime('%Y-%m-%d')
     return "Fecha no asignada"
+
+
+@app.route('/directory/teachers')
+def teachers_directory():
+    return render_template("add_teachers.html")
+
+@app.route('/app/teachers')
+def add_teachers():
+    return render_template("add_teachers.html")

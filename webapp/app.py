@@ -108,3 +108,15 @@ def create_course():
         add_course(new_course)
         return redirect(url_for('courses_directory'))
     return render_template("add_course.html")
+
+@app.route('/edit/course/<course_id>', methods=['GET', 'POST'])
+def edit_course(course_id):
+    if request.method == 'POST':
+        updated_course = {"name": request.form['name'], "teacher": request.form['teacher'],
+        "start":  get_formatted_date(request.form['start']), 
+        "end": get_formatted_date(request.form['end']), "cost": request.form['cost'],
+        "status": request.form['status']}
+        update_course(course_id, request.form['etag'], updated_course)
+        return redirect(url_for('courses_directory'))
+    course_data = get_course_data(course_id)
+    return render_template("edit_course.html", course_data=course_data)

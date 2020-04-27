@@ -31,7 +31,7 @@
                     <td>{{ course.end|truncate(17, True, ' ') }}</td>
                     <td>{{ course.cost }}</td>
                     <td>{{ course.status }}</td>
-                    <td><a href="{{ url_for('homepage') }}">Editar</a></td>
+                    <td><a href="{{ url_for('edit_course', course_id=course._id) }}">Editar</a></td>
                 </tr>
             {% endfor %}
         </tbody>

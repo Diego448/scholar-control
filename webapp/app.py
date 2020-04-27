@@ -120,3 +120,11 @@ def edit_course(course_id):
         return redirect(url_for('courses_directory'))
     course_data = get_course_data(course_id)
     return render_template("edit_course.html", course_data=course_data)
+
+
+@app.template_filter('toisoformat')
+def toisoformat(input_string):
+    if input_string:
+        input_datetime = datetime.strptime(input_string, '%a, %d %b %Y %H:%M:%S GMT')
+        return input_datetime.strftime('%Y-%m-%d')
+    return "Fecha no asignada"

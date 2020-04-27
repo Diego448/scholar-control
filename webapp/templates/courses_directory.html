@@ -27,8 +27,8 @@
                 <tr>
                     <td>{{ course.name }}</td>
                     <td>{{ course.teacher }}</td>
-                    <td>{{ course.start|truncate(17, True, ' ') }}</td>
-                    <td>{{ course.end|truncate(17, True, ' ') }}</td>
+                    <td>{{ course.start|string|toisoformat }}</td>
+                    <td>{{ course.end|string|toisoformat }}</td>
                     <td>{{ course.cost }}</td>
                     <td>{{ course.status }}</td>
                     <td><a href="{{ url_for('edit_course', course_id=course._id) }}">Editar</a></td>

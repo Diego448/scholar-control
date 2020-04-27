@@ -12,7 +12,7 @@
             <option value="00000001">Profesor 1</option>
             <option value="00000002">Profesor 2</option>
         </select>
-        <input type="date" name="start" id="start" required>
+        <input type="date" name="start" id="start" value="{{ course_data.start|toisoformat }}" required>
         <input type="date" name="end" id="end" required>
         <input type="number" name="cost" id="cost" placeholder="Costo" value="{{ course_data.cost }}" required>
         <select name="status" id="status">

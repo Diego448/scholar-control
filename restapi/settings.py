@@ -103,8 +103,8 @@ teachers = {
     'schema': teacher_schema
 }
 
-
 DOMAIN = {
     'students': students,
     'courses': courses
+    'Teachers': teachers
 }

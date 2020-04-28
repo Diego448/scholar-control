@@ -3,10 +3,11 @@ import json, requests
 from datetime import datetime, date, time
 app = Flask(__name__)
 
-base_url = 'http://127.0.0.1:5000/'
-students_resource_url = base_url + 'students'
-courses_resource_url = base_url + 'courses'
-teachers_resource_url = base_url + 'teachers'
+app_url = 'http://127.0.0.1:5000/'
+students_resource_url = app_url + 'students'
+courses_resource_url = app_url + 'courses'
+teachers_resource_url = app_url + 'teachers'
+payments_resource_url = app_url + 'payments'
 
 def get_students():
     r = requests.get('http://127.0.0.1:5000/students')
@@ -71,11 +72,24 @@ def get_teacher_data(id):
 def add_teacher(data):
     headers = {'content-type': 'application/json'}
     r = requests.post('http://127.0.0.1:5000/teachers', json=data, headers=headers)
-    return r
+    return r.status_code
 
 def update_teacher(teacher_id, teacher_etag, data):
     headers = {'content-type': 'application/json', 'If-Match': str(teacher_etag)}
     r = requests.patch(teachers_resource_url + '/' + teacher_id, json=data, headers=headers)
+    return r.status_code
+
+def get_payments():
+    r = requests.get(payments_resource_url)
+    return r.json()
+
+def get_payment_data(id):
+    r = requests.get(payments_resource_url + '/' + id)
+    return r.json()
+
+def add_payment(data):
+    headers = {'content-type': 'application/json'}
+    r = requests.post(payments_resource_url, json=data, headers=headers)
     return r.status_code
 
 @app.route('/directory/students')

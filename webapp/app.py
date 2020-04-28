@@ -126,7 +126,8 @@ def create_course():
         "status": request.form['status']}
         add_course(new_course)
         return redirect(url_for('courses_directory'))
-    return render_template("add_course.html")
+    teachers = get_teachers()
+    return render_template("add_course.html", teachers=teachers['_items'])
 
 @app.route('/edit/course/<course_id>', methods=['GET', 'POST'])
 def edit_course(course_id):
@@ -138,7 +139,8 @@ def edit_course(course_id):
         update_course(course_id, request.form['etag'], updated_course)
         return redirect(url_for('courses_directory'))
     course_data = get_course_data(course_id)
-    return render_template("edit_course.html", course_data=course_data)
+    teachers = get_teachers()
+    return render_template("edit_course.html", course_data=course_data, teachers=teachers['_items'])
 
 
 @app.template_filter('toisoformat')

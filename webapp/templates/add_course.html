@@ -9,8 +9,9 @@
         <input type="text" name="name" id="name" placeholder="Nombre del curso" required>
         <select name="teacher" id="teacher" required>
             <option value="">Selecciona un profesor</option>
-            <option value="00000001">Profesor 1</option>
-            <option value="00000002">Profesor 2</option>
+            {% for teacher in teachers %}
+                <option value="{{ teacher._id }}">{{ teacher.firstname }}</option>
+            {% endfor %}
         </select>
         <label for="start">Fecha de inicio</label>
         <input type="date" name="start" id="start" required>

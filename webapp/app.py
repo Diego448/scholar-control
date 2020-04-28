@@ -64,6 +64,9 @@ def get_teachers():
     r = requests.get('http://127.0.0.1:5000/teachers')
     return r.json()
 
+def get_teacher_data(id):
+    r = requests.get(teachers_resource_url + '/' + id)
+    return r.json()
 
 def add_teacher(data):
     headers = {'content-type': 'application/json'}
@@ -145,7 +148,6 @@ def toisoformat(input_string):
         return input_datetime.strftime('%Y-%m-%d')
     return "Fecha no asignada"
 
-
 @app.route('/directory/teachers')
 def teachers_directory():
     teachers_data = get_teachers()
@@ -165,8 +167,8 @@ def add_teachers():
 def edit_teacher(teacher_id):
     if request.method == 'POST':
         updated_data = {'firstname': request.form['firstname'], 'lastname': request.form['lastname'], 
-        'phone_number': request.form['phone_number'], 'status': get_status(request.form)}
+        'phone_number': request.form['phone_number'], 'status': request.form['status']}
         update_teacher(teacher_id, request.form['etag'], updated_data)
         return redirect(url_for('teachers_directory'))
-    #teacher_data = get_teacher_data(student_id)
-    return render_template("edit_teacher.html")
+    teacher_data = get_teacher_data(teacher_id)
+    return render_template("edit_teacher.html", teacher_data=teacher_data)

@@ -27,6 +27,7 @@
                     <td>{{ teacher.lastname }}</td>
                     <td>{{ teacher.phone_number }}</td>
                     <td>{{ teacher.status }}</td>
+                    <td><a href="{{ url_for('edit_teacher', teacher_id=teacher._id) }}">Editar</a></td>
                 </tr>
             {% endfor %}
         </tbody>

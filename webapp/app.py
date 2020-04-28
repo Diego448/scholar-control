@@ -160,3 +160,13 @@ def add_teachers():
         add_teacher(new_teacher)
         return redirect(url_for('teachers_directory'))
     return render_template("add_teacher.html")
+
+@app.route('/edit/teacher/<teacher_id>', methods=['GET', 'POST'])
+def edit_teacher(teacher_id):
+    if request.method == 'POST':
+        updated_data = {'firstname': request.form['firstname'], 'lastname': request.form['lastname'], 
+        'phone_number': request.form['phone_number'], 'status': get_status(request.form)}
+        update_teacher(teacher_id, request.form['etag'], updated_data)
+        return redirect(url_for('teachers_directory'))
+    #teacher_data = get_teacher_data(student_id)
+    return render_template("edit_teacher.html")

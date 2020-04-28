@@ -87,6 +87,31 @@ teacher_schema = {
     }
 }
 
+Payment_schema = {
+    'course': {
+        'type': 'string', 
+        'minlength': 3,
+        'required': True
+    },
+    'student': {
+        'type': 'string', 
+        'minlength': 3,
+        'required': True
+    },
+    'amount': {
+        'type': 'float',
+        'required': True
+    },
+    'payment_date': {
+        'type': 'datetime',
+        'required': True
+    },
+    'status': {
+        'type': 'string',
+        'allowed': ['Pagado', 'No Pagado']
+    }
+}
+
 students = {
     'item_title': 'student',
     'schema': student_schema

@@ -196,3 +196,8 @@ def edit_teacher(teacher_id):
         return redirect(url_for('teachers_directory'))
     teacher_data = get_teacher_data(teacher_id)
     return render_template("edit_teacher.html", teacher_data=teacher_data)
+
+@app.route('/directory/courses/<teacher_id>')
+def teacher_courses(teacher_id):
+    courses = get_teacher_courses(teacher_id)
+    return render_template("teacher_courses.html", courses=courses['_items'])

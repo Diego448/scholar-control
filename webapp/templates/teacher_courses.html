@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <meta encoding="utf-8">
+    <title>Cursos asignados</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('teachers_directory') }}">Regresar</a></li>
+        </ul>
+    </nav>
+    <h1>Control de cursos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del curso</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de termino</th>
+                <th>Costo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+                <tr>
+                    <td>{{ course.name }}</td>
+                    <td>{{ course.start|string|toisoformat }}</td>
+                    <td>{{ course.end|string|toisoformat }}</td>
+                    <td>${{ course.cost }}</td>
+                    <td>{{ course.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>

@@ -28,6 +28,7 @@
                     <td>{{ teacher.phone_number }}</td>
                     <td>{{ teacher.status }}</td>
                     <td><a href="{{ url_for('edit_teacher', teacher_id=teacher._id) }}">Editar</a></td>
+                    <td><a href="{{ url_for('teacher_courses', teacher_id=teacher._id) }}">Consultar cursos</a></td>
                 </tr>
             {% endfor %}
         </tbody>

@@ -3,11 +3,11 @@ import json, requests
 from datetime import datetime, date, time
 app = Flask(__name__)
 
-app_url = 'http://127.0.0.1:5000/'
-students_resource_url = app_url + 'students'
-courses_resource_url = app_url + 'courses'
-teachers_resource_url = app_url + 'teachers'
-payments_resource_url = app_url + 'payments'
+restapi_url = 'http://127.0.0.1:5000/'
+students_resource_url = restapi_url + 'students'
+courses_resource_url = restapi_url + 'courses'
+teachers_resource_url = restapi_url + 'teachers'
+payments_resource_url = restapi_url + 'payments'
 
 def get_students():
     r = requests.get('http://127.0.0.1:5000/students')
@@ -93,7 +93,7 @@ def add_payment(data):
     return r.status_code
 
 def get_student_payments(student_id):
-    r = requests.get(payments_resource_url + '?where={student:"' + student_id + '"')
+    r = requests.get(payments_resource_url + '?where={student:"' + str(student_id) + '"}')
     return r.status_code
 
 @app.route('/directory/students')

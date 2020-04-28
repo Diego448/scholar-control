@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head>
+    <meta encoding="utf-8">
+    <title>Editar Profesor</title>
+</head>
+<body>
+    <h1>Editar Profesor</h1>
+    <form method="POST">
+</body>
+</body>
+        <input type="text" name="firstname" id="firstname" value="{{ teacher_data.firstname }}" placeholder="Nombre" required>
+        <input type="text" name="lastname" id="lastname" value="{{ teacher_data.lastname }}" placeholder="Apellido" required>
+        <input type="text" name="location" id="location" value="{{ teacher_data.location }}" placeholder="Ubicación" required>
+        <input type="tel" name="phone_number" id="phone_number" value="{{ teacher_data.phone_number }}" placeholder="Número de teléfono" required>
+        <input type="submit" value="Guardar">
+        <input type="text" name="etag" id="etag" value="{{teacher_data._etag}}" hidden>
+    </form>
+</body>

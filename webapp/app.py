@@ -63,6 +63,12 @@ def get_teachers():
     r = requests.get('http://127.0.0.1:5000/teachers')
     return r.json()
 
+
+def add_teacher(data):
+    headers = {'content-type': 'application/json'}
+    r = requests.post('http://127.0.0.1:5000/teachers', json=data, headers=headers)
+    return r
+
 @app.route('/directory/students')
 def student_directory(students={}):
     students_data = get_students()
@@ -139,6 +145,12 @@ def teachers_directory():
     teachers_data = get_teachers()
     return render_template("teacher_directory.html", teachers=teachers_data['_items'])
 
-@app.route('/add/teacher')
+@app.route('/add/teacher', methods=['GET', 'POST'])
 def add_teachers():
+    if request.method == 'POST':
+        new_teacher = {'firstname': request.form['firstname'], 'lastname': request.form['lastname'],
+        'students_number': request.form['student_numbers'], 'phone_number': request.form['phone_number'],
+        'status': get_status(request.form['status'])}
+        add_teacher(new_teacher)
+        return redirect(url_for('teachers_directory'))
     return render_template("add_teacher.html")

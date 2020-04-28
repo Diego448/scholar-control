@@ -6,12 +6,19 @@
 <body>
     <h1>Editar Profesor</h1>
     <form method="POST">
+<<<<<<< HEAD
 </body>
 </body>
         <input type="text" name="firstname" id="firstname" value="" placeholder="Nombre" required>
         <input type="text" name="lastname" id="lastname" value="" placeholder="Apellido" required>
         <input type="text" name="location" id="location" value="" placeholder="Ubicación" required>
         <input type="tel" name="phone_number" id="phone_number" value="" placeholder="Número de teléfono" required>
+=======
+        <input type="text" name="firstname" id="firstname" value="{{ teacher_data.firstname }}" placeholder="Nombre" required>
+        <input type="text" name="lastname" id="lastname" value="{{ teacher_data.lastname }}" placeholder="Apellido" required>
+        <input type="text" name="location" id="location" value="{{ teacher_data.location }}" placeholder="Ubicación" required>
+        <input type="tel" name="phone_number" id="phone_number" value="{{ teacher_data.phone_number }}" placeholder="Número de teléfono" required>
+>>>>>>> 00805bff9aa793c1aebbd0e89b2873dbc9aa9a23
         <input type="submit" value="Guardar">
         <input type="text" name="etag" id="etag" value="" hidden>
     </form>

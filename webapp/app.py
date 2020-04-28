@@ -92,6 +92,10 @@ def add_payment(data):
     r = requests.post(payments_resource_url, json=data, headers=headers)
     return r.status_code
 
+def get_student_payments(student_id):
+    r = requests.get(payments_resource_url + '?where={student:"' + student_id + '"')
+    return r.status_code
+
 @app.route('/directory/students')
 def student_directory(students={}):
     students_data = get_students()

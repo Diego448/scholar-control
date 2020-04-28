@@ -79,6 +79,10 @@ def update_teacher(teacher_id, teacher_etag, data):
     r = requests.patch(teachers_resource_url + '/' + teacher_id, json=data, headers=headers)
     return r.status_code
 
+def get_teacher_courses(teacher_id):
+    r = requests.get(courses_resource_url + '?where={"teacher":"' + str(teacher_id) + '"}')
+    return r.json()
+
 def get_payments():
     r = requests.get(payments_resource_url)
     return r.json()
@@ -94,7 +98,7 @@ def add_payment(data):
 
 def get_student_payments(student_id):
     r = requests.get(payments_resource_url + '?where={student:"' + str(student_id) + '"}')
-    return r.status_code
+    return r.json()
 
 @app.route('/directory/students')
 def student_directory(students={}):

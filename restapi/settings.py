@@ -119,7 +119,12 @@ students = {
 
 courses = {
     'item_title': 'course',
-    'schema': course_schema
+    'schema': course_schema,
+    'query_objectid_as_string': True,
+    'additional_lookup': {
+        'url': 'regex("[0-9a-f]+")',
+        'field': 'teacher'
+    }
 }
 
 teachers = {

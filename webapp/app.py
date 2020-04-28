@@ -6,6 +6,7 @@ app = Flask(__name__)
 base_url = 'http://127.0.0.1:5000/'
 students_resource_url = base_url + 'students'
 courses_resource_url = base_url + 'courses'
+teachers_resource_url = base_url + 'teachers'
 
 def get_students():
     r = requests.get('http://127.0.0.1:5000/students')
@@ -43,7 +44,7 @@ def add_course(data):
     return r.status_code
 
 def update_course(course_id, course_etag, data):
-    headers = headers = {'content-type': 'application/json', 'If-Match': str(course_etag)}
+    headers = {'content-type': 'application/json', 'If-Match': str(course_etag)}
     r = requests.patch(courses_resource_url + '/' + course_id, json=data, headers=headers)
     return r.status_code
 
@@ -68,6 +69,11 @@ def add_teacher(data):
     headers = {'content-type': 'application/json'}
     r = requests.post('http://127.0.0.1:5000/teachers', json=data, headers=headers)
     return r
+
+def update_teacher(teacher_id, teacher_etag, data):
+    headers = {'content-type': 'application/json', 'If-Match': str(teacher_etag)}
+    r = requests.patch(teachers_resource_url + '/' + teacher_id, json=data, headers=headers)
+    return r.status_code
 
 @app.route('/directory/students')
 def student_directory(students={}):

@@ -6,12 +6,14 @@
 <body>
     <h1>Agregar Pago</h1>
     <form method="POST">
-        <input type="text" name="course" id="'course'" placeholder="Curso" required>
-        <input type="text" name="student" id="student" placeholder="Estudiante" required>
+        <select name="course" id="course">
+            <option value="">Selecciona un curso</option>
+        </select>
+        <select name="student" id="student">
+            <option value="">Selecciona un estudiante</option>
+        </select>
         <input type="number" name="amount" id="amount" placeholder="Cantidad" required>
-        <input type="datetime" name="payment_date" id="payment_date" placeholder="Fecha de pago" required>
-        <label for="status">Activo</label>
-        <input type="checkbox" name="status" id="status" value="True">
+        <input type="date" name="payment_date" id="payment_date" placeholder="Fecha de pago" required>
         <input type="submit" value="Guardar">
     </form>
 </body>

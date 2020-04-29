@@ -87,7 +87,7 @@ teacher_schema = {
     }
 }
 
-Payment_schema = {
+payment_schema = {
     'course': {
         'type': 'string', 
         'minlength': 3,

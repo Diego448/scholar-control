@@ -164,7 +164,6 @@ def edit_course(course_id):
     teachers = get_teachers()
     return render_template("edit_course.html", course_data=course_data, teachers=teachers['_items'])
 
-
 @app.template_filter('toisoformat')
 def toisoformat(input_string):
     if input_string:

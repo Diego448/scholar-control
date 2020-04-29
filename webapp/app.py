@@ -200,3 +200,12 @@ def edit_teacher(teacher_id):
 def teacher_courses(teacher_id):
     courses = get_teacher_courses(teacher_id)
     return render_template("teacher_courses.html", courses=courses['_items'])
+
+@app.route('/registry/payments')
+def payments_registry():
+    payments = get_payments()
+    return render_template("payment_registry.html", payments=payments['_items'])
+
+@app.route('/add/payment', methods=['GET', 'POST'])
+def register_payment():
+    return render_template("add_payment.html")

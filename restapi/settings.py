@@ -128,7 +128,7 @@ courses = {
 }
 
 teachers = {
-    'item_title': 'Teachers',
+    'item_title': 'teacher',
     'schema': teacher_schema
 }
 

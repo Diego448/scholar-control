@@ -132,8 +132,14 @@ teachers = {
     'schema': teacher_schema
 }
 
+payment = {
+    'item_title': 'payment',
+    'schema': payment_schema
+}
+
 DOMAIN = {
     'students': students,
     'courses': courses,
+    'payment': payment,
     'teachers': teachers
 }

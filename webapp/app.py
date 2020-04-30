@@ -97,7 +97,7 @@ def add_payment(data):
     return r.status_code
 
 def get_student_payments(student_id):
-    r = requests.get(payments_resource_url + '?where={student:"' + str(student_id) + '"}')
+    r = requests.get(payments_resource_url + '?where={"student":"' + str(student_id) + '"}')
     return r.json()
 
 @app.route('/directory/students')
@@ -213,6 +213,6 @@ def register_payment():
     return render_template("add_payment.html", students=students['_items'], courses=courses['_items'])
 
 @app.route('/registry/payments/<student_id>')
-def student_payments():
-    payments = get_payments()
-    return render_template("student_payments.html", payments=payments['_items'])
+def student_payments(student_id):
+    payments = get_student_payments(student_id)
+    return render_template("student_payments.html", payments=payments['_items'], student=student_id)

@@ -134,7 +134,12 @@ teachers = {
 
 payments = {
     'item_title': 'payment',
-    'schema': payment_schema
+    'query_objectid_as_string': True,
+    'schema': payment_schema,
+    'additional_lookup': {
+        'url': 'regex("[0-9a-f]+")',
+        'field': 'student'
+    }
 }
 
 DOMAIN = {

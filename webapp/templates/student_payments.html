@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <meta encoding="utf-8">
+    <title>Registro de pagos de alumno</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('homepage') }}">Agregar curso</a></li>
+        </ul>
+    </nav>
+    <h1>Registro de pagos de {{  }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del curso</th>
+                <th>Total de pagos</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr></tr>
+            
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th>Estudiante</th>
+                <th>Curso</th>
+                <th>Fecha de pago</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+                <tr>
+                    <td>{{ payment.student }}</td>
+                    <td>{{ payment.course }}</td>
+                    <td>{{ payment.payment_date|string|toisoformat }}</td>
+                    <td>${{ payment.amount }}</td>
+                    <td><a href="{{ url_for('homepage') }}">Editar</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>

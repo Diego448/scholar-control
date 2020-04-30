@@ -1,15 +1,28 @@
 <!DOCTYPE html>
 <head>
     <meta encoding="utf-8">
-    <title>Registro de pagos</title>
+    <title>Registro de pagos de alumno</title>
 </head>
 <body>
     <nav>
         <ul>
-            <li><a href="{{ url_for('register_payment') }}">Agregar pago</a></li>
+            <li><a href="{{ url_for('homepage') }}">Agregar curso</a></li>
         </ul>
     </nav>
-    <h1>Registro de pagos</h1>
+    <h1>Registro de pagos de {{  }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del curso</th>
+                <th>Total de pagos</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr></tr>
+            
+        </tbody>
+    </table>
     <table>
         <thead>
             <tr>
@@ -27,7 +40,7 @@
                     <td>{{ payment.course }}</td>
                     <td>{{ payment.payment_date|string|toisoformat }}</td>
                     <td>${{ payment.amount }}</td>
-                    <td><a href="{{ url_for('homepage') }}">Pointless button</a></td>
+                    <td><a href="{{ url_for('homepage') }}">Editar</a></td>
                 </tr>
             {% endfor %}
         </tbody>

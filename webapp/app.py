@@ -204,13 +204,20 @@ def teacher_courses(teacher_id):
 @app.route('/registry/payments')
 def payments_registry():
     payments = get_payments()
-    return render_template("payment_registry.html", payment=payments['_items'])
+    return render_template("payment_registry.html", payments=payments['_items'])
 
 @app.route('/add/payment', methods=['GET', 'POST'])
 def register_payment():
     if request.method == 'POST':
         new_payment = {'course': request.form['course'], 'student': request.form['student'],
-        'amount': request.form['amount'], 'payment_date': request.form['payment_date']}
+        'amount': request.form['amount'], 
+        'payment_date': get_formatted_date(request.form['payment_date'])}
         add_payment(new_payment)
         return redirect(url_for('payments_registry'))
-    return render_template("add_payment.html")
+    students = get_students()
+    courses = get_courses()
+    return render_template("add_payment.html", students=students['_items'], courses=courses['_items'])
+
+def student_payments():
+    payments = get_payments()
+    return render_template("student_payments.html", payments=payments['_items'])

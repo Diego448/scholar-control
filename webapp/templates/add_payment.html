@@ -8,9 +8,15 @@
     <form method="POST">
         <select name="course" id="course">
             <option value="">Selecciona un curso</option>
+            {% for course in courses %}
+            <option value="{{ course._id }}">{{ course.name }}</option>
+            {% endfor %}
         </select>
         <select name="student" id="student">
             <option value="">Selecciona un estudiante</option>
+            {% for student in students %}
+            <option value="{{ student._id }}">{{ student.firstname + ' ' + student.lastname }}</option>
+            {% endfor %}
         </select>
         <input type="number" name="amount" id="amount" placeholder="Cantidad" required>
         <input type="date" name="payment_date" id="payment_date" placeholder="Fecha de pago" required>

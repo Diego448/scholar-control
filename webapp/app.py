@@ -208,4 +208,9 @@ def payments_registry():
 
 @app.route('/add/payment', methods=['GET', 'POST'])
 def register_payment():
+    if request.method == 'POST':
+        new_payment = {'course': request.form['course'], 'student': request.form['student'],
+        'amount': request.form['amount'], 'payment_date': request.form['payment_date']}
+        add_payment(new_payment)
+        return redirect(url_for('payments_registry'))
     return render_template("add_payment.html")

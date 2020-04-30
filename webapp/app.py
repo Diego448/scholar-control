@@ -208,7 +208,9 @@ def payments_registry():
 
 @app.route('/add/payment', methods=['GET', 'POST'])
 def register_payment():
-    return render_template("add_payment.html")
+    students = get_students()
+    courses = get_courses()
+    return render_template("add_payment.html", students=students['_items'], courses=courses['_items'])
 
 @app.route('/registry/payments/<student_id>')
 def student_payments():

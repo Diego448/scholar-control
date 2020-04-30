@@ -204,7 +204,7 @@ def teacher_courses(teacher_id):
 @app.route('/registry/payments')
 def payments_registry():
     payments = get_payments()
-    return render_template("payment_registry.html", payments=payments['_items'])
+    return render_template("payment_registry.html", payment=payments['_items'])
 
 @app.route('/add/payment', methods=['GET', 'POST'])
 def register_payment():

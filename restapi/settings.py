@@ -132,7 +132,7 @@ teachers = {
     'schema': teacher_schema
 }
 
-payment = {
+payments = {
     'item_title': 'payment',
     'schema': payment_schema
 }
@@ -140,6 +140,6 @@ payment = {
 DOMAIN = {
     'students': students,
     'courses': courses,
-    'payment': payment,
+    'payments': payments,
     'teachers': teachers
 }

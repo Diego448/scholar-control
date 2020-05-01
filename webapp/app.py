@@ -221,4 +221,12 @@ def register_payment():
 @app.route('/registry/payments/<student_id>')
 def student_payments(student_id):
     payments = get_student_payments(student_id)
-    return render_template("student_payments.html", payments=payments['_items'], student=student_id)
+    unique_courses = set(entry['course'] for entry in payments['_items'])
+    courses = list(entry['course'] for entry in payments['_items'])
+    summary = []
+    for value in unique_courses:
+        entry = {}
+        entry['amount'] = courses.count(value)
+        entry['course'] = value
+        summary.append(entry)
+    return render_template("student_payments.html", payments=payments['_items'], student=student_id, summary=summary)

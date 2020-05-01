@@ -18,9 +18,12 @@
             </tr>
         </thead>
         <tbody>
-
-            <tr></tr>
-
+            {% for entry in summary %}
+            <tr>
+                <td>{{ entry.course }}</td>
+                <td>{{ entry.amount }}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
     <table>
@@ -30,7 +33,6 @@
                 <th>Curso</th>
                 <th>Fecha de pago</th>
                 <th>Cantidad</th>
-                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -40,7 +42,6 @@
                     <td>{{ payment.course }}</td>
                     <td>{{ payment.payment_date|string|toisoformat }}</td>
                     <td>${{ payment.amount }}</td>
-                    <td><a href="{{ url_for('homepage') }}">Editar</a></td>
                 </tr>
             {% endfor %}
         </tbody>

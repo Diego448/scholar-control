@@ -2,46 +2,57 @@
 <head>
     <meta encoding="utf-8">
     <title>Registro de pagos de alumno</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('homepage') }}">Agregar curso</a></li>
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('homepage') }}">Inicio</a></li>
         </ul>
     </nav>
-    <h1>Registro de pagos de {{ student }}</h1>
-    <table>
-        <thead>
+    <h1 class="h1">Registro de pagos de {{ student }}</h1>
+    <h3 class="h3 text-center">Resumen de pagos</h3>
+    <table class="table table-sm">
+        <thead class="thead-light">
             <tr>
-                <th>Nombre del curso</th>
-                <th>Total de pagos</th>
+                <th class="text-center">Nombre del curso</th>
+                <th class="text-center">Total de pagos</th>
             </tr>
         </thead>
         <tbody>
             {% for entry in summary %}
             <tr>
-                <td>{{ entry.course }}</td>
-                <td>{{ entry.amount }}</td>
+                <td class="text-center">{{ entry.course }}</td>
+                <td class="text-center">{{ entry.amount }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td class="text-center" colspan="2">No hay pagos registrados</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <table>
-        <thead>
+    <h3 class="h3 text-center">Todos los pagos</h3>
+    <table class="table table-striped">
+        <thead class="thead-light">
             <tr>
-                <th>Estudiante</th>
-                <th>Curso</th>
-                <th>Fecha de pago</th>
-                <th>Cantidad</th>
+                <th class="text-center">Estudiante</th>
+                <th class="text-center">Curso</th>
+                <th class="text-center">Fecha de pago</th>
+                <th class="text-center">Cantidad</th>
             </tr>
         </thead>
         <tbody>
             {% for payment in payments %}
                 <tr>
-                    <td>{{ payment.student }}</td>
-                    <td>{{ payment.course }}</td>
-                    <td>{{ payment.payment_date|string|toisoformat }}</td>
-                    <td>${{ payment.amount }}</td>
+                    <td class="text-center">{{ payment.student }}</td>
+                    <td class="text-center">{{ payment.course }}</td>
+                    <td class="text-center">{{ payment.payment_date|string|toisoformat }}</td>
+                    <td class="text-center">${{ payment.amount }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td class="text-center" colspan="4">No hay pagos registrados</td>
                 </tr>
             {% endfor %}
         </tbody>

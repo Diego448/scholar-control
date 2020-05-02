@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <meta encoding="utf-8">
+    <title>Estudiantes inscritos</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('courses_directory') }}">Regresar</a></li>
+        </ul>
+    </nav>
+    <h1>Estudiantes inscritos</h1>
+    <p>
+        <ul>
+            {% for student in students %}
+            <li>{{ student + ' '}}<a href="#">Eliminar</a></li>
+            {% else %}
+            <li>No hay alumnos registrados</li>
+            {% endfor %}
+        </ul>
+    </p>
+</body>

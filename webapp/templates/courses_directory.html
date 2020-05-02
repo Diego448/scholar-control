@@ -32,7 +32,7 @@
                     <td>${{ course.cost }}</td>
                     <td>{{ course.status }}</td>
                     <td><a href="{{ url_for('edit_course', course_id=course._id) }}">Editar</a></td>
-                    <td><a href="#">Ver alumnos registrados</a></td>
+                    <td><a href="{{ url_for('enrolled_students', course_id=course._id) }}">Ver inscripciones</a></td>
                 </tr>
             {% endfor %}
         </tbody>

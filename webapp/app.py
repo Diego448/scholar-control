@@ -243,3 +243,9 @@ def enroll_student(student_id):
         return redirect(url_for('student_directory'))
     courses = get_courses()    
     return render_template("enroll_student.html", courses=courses['_items'])
+
+@app.route('/directory/courses/enrolled/<course_id>/')
+def enrolled_students(course_id):
+    course_data = get_course_data(course_id)
+    student_list = course_data['students']
+    return render_template("enrolled_students.html", students=student_list)

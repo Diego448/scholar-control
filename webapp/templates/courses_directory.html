@@ -19,7 +19,7 @@
                 <th>Fecha de termino</th>
                 <th>Costo</th>
                 <th>Estado</th>
-                <th>Acciones</th>
+                <th colspan="2">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +32,7 @@
                     <td>${{ course.cost }}</td>
                     <td>{{ course.status }}</td>
                     <td><a href="{{ url_for('edit_course', course_id=course._id) }}">Editar</a></td>
+                    <td><a href="#">Ver alumnos registrados</a></td>
                 </tr>
             {% endfor %}
         </tbody>

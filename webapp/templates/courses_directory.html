@@ -2,37 +2,36 @@
 <head>
     <meta encoding="utf-8">
     <title>Control de cursos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('create_course') }}">Agregar curso</a></li>
-        </ul>
+    <nav class="nav justify-content-end">
+        <a class="nav-item nav-link" href="{{ url_for('create_course') }}">Agregar curso</a>
     </nav>
-    <h1>Control de cursos</h1>
-    <table>
-        <thead>
+    <h1 class="h1 text-center">Control de cursos</h1>
+    <table class="table table-striped">
+        <thead class="thead-light">
             <tr>
-                <th>Nombre del curso</th>
-                <th>Profesor</th>
-                <th>Fecha de inicio</th>
-                <th>Fecha de termino</th>
-                <th>Costo</th>
-                <th>Estado</th>
-                <th colspan="2">Acciones</th>
+                <th class="text-center">Nombre del curso</th>
+                <th class="text-center">Profesor</th>
+                <th class="text-center">Fecha de inicio</th>
+                <th class="text-center">Fecha de termino</th>
+                <th class="text-center">Costo</th>
+                <th class="text-center">Estado</th>
+                <th class="text-justify" colspan="2">Acciones</th>
             </tr>
         </thead>
         <tbody>
             {% for course in courses %}
                 <tr>
-                    <td>{{ course.name }}</td>
-                    <td>{{ course.teacher }}</td>
-                    <td>{{ course.start|string|toisoformat }}</td>
-                    <td>{{ course.end|string|toisoformat }}</td>
-                    <td>${{ course.cost }}</td>
-                    <td>{{ course.status }}</td>
-                    <td><a href="{{ url_for('edit_course', course_id=course._id) }}">Editar</a></td>
-                    <td><a href="{{ url_for('enrolled_students', course_id=course._id) }}">Ver inscripciones</a></td>
+                    <td class="text-center">{{ course.name }}</td>
+                    <td class="text-center">{{ course.teacher }}</td>
+                    <td class="text-center">{{ course.start|string|toisoformat }}</td>
+                    <td class="text-center">{{ course.end|string|toisoformat }}</td>
+                    <td class="text-center">${{ course.cost }}</td>
+                    <td class="text-center">{{ course.status }}</td>
+                    <td class="text-justify"><a href="{{ url_for('edit_course', course_id=course._id) }}">Editar</a></td>
+                    <td class="text-justify"><a href="{{ url_for('enrolled_students', course_id=course._id) }}">Ver inscripciones</a></td>
                 </tr>
             {% endfor %}
         </tbody>

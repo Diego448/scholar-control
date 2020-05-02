@@ -230,3 +230,16 @@ def student_payments(student_id):
         entry['course'] = value
         summary.append(entry)
     return render_template("student_payments.html", payments=payments['_items'], student=student_id, summary=summary)
+
+@app.route('/enroll/student/<student_id>', methods=['GET', 'POST'])
+def enroll_student(student_id):
+    if request.method == 'POST':
+        course_id = request.form['course']
+        course = get_course_data(course_id)
+        student_list = course['students']
+        student_list.append(student_id)
+        update_data = {"students": student_list}
+        update_course(course_id, course['_etag'], update_data)
+        return redirect(url_for('student_directory'))
+    courses = get_courses()    
+    return render_template("enroll_student.html", courses=courses['_items'])

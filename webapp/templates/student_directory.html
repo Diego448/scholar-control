@@ -31,7 +31,7 @@
                     <td>{{ student.status }}</td>
                     <td><a href="{{ url_for('edit_student', student_id=student._id) }}">Editar</a></td>
                     <td><a href="{{ url_for('student_payments', student_id=student._id) }}">Ver pagos</a></td>
-                    <td><a href="#">Inscribir a curso</a></td>
+                    <td><a href="{{ url_for('enroll_student', student_id=student._id) }}">Inscribir a curso</a></td>
                 </tr>
             {% endfor %}
         </tbody>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>
+    <meta encoding="utf-8">
+    <title>Inscripción de estudiante</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('student_directory') }}">Regresar</a></li>
+        </ul>
+    </nav>
+    <h1>Inscripción de estudiante</h1>
+    <form method="POST">
+        <select name="course" id="course">
+            <option value="">Selecciona el curso a inscribir</option>
+            {% for course in courses %}
+            <option value="{{ course._id }}">{{ course.name }}</option>
+            {% else %}
+            <option value="error">No fué posible obtener los cursos</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Inscribir">
+    </form>
+</body>

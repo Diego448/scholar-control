@@ -2,20 +2,19 @@
 <head>
     <meta encoding="utf-8">
     <title>Estudiantes inscritos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('courses_directory') }}">Regresar</a></li>
-        </ul>
+    <nav class="nav justify-content-end">
+        <a class="nav-item nav-link" href="{{ url_for('courses_directory') }}">Regresar</a>
     </nav>
-    <h1>Estudiantes inscritos</h1>
+    <h1 class="h1 text-center">Estudiantes inscritos</h1>
     <p>
-        <ul>
+        <ul class="list-group">
             {% for student in students %}
-            <li>{{ student + ' '}}<a href="#">Eliminar</a></li>
+            <li class="list-group-item">{{ student + ' '}}</li>
             {% else %}
-            <li>No hay alumnos registrados</li>
+            <li class="list-group-item">No hay alumnos registrados</li>
             {% endfor %}
         </ul>
     </p>

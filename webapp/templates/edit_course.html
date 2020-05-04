@@ -2,27 +2,59 @@
 <head>
     <meta encoding="utf-8">
     <title>Editar curso</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
 </head>
 <body>
-    <h1>Editar curso</h1>
+    <nav class="nav justify-content-end">
+        <a class="nav-item nav-link" href="{{ url_for('courses_directory') }}">Regresar</a>
+    </nav>
+    <h1 class="h1 text-center pb-3">Editar curso</h1>
     <form method="POST">
-        <input type="text" name="name" id="name" value="{{ course_data.name }}" required>
-        <select name="teacher" id="teacher" required>
-            <option value="">Selecciona un profesor</option>
-            {% for teacher in teachers %}
-                <option value="{{ teacher._id }}">{{ teacher.firstname }}</option>
-            {% endfor %}
-        </select>
-        <input type="date" name="start" id="start" value="{{ course_data.start|toisoformat }}" required>
-        <input type="date" name="end" id="end" value="{{ course_data.end|toisoformat }}"}} required>
-        <input type="number" name="cost" id="cost" placeholder="Costo" value="{{ course_data.cost }}" required>
-        <select name="status" id="status">
-            <option value="Programado">Programado</option>
-            <option value="Iniciado">Iniciado</option>
-            <option value="Terminado">Terminado</option>
-            <option value="Cancelado">Cancelado</option>
-        </select>
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-4">
+                <label for="name">Nombre del curso</label>
+                <input class="form-control" type="text" name="name" id="name" value="{{ course_data.name }}" required>
+            </div>
+        </div>
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-2">
+                <label for="teacher">Profesor / Instructor</label>
+                <select class="form-control" name="teacher" id="teacher" required>
+                    <option value="">Selecciona un profesor</option>
+                    {% for teacher in teachers %}
+                        <option value="{{ teacher._id }}">{{ teacher.firstname }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="status">Estado del curso</label>
+                <select class="form-control" name="status" id="status">
+                    <option value="Programado">Programado</option>
+                    <option value="Iniciado">Iniciado</option>
+                    <option value="Terminado">Terminado</option>
+                    <option value="Cancelado">Cancelado</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-2">
+                <label for="start">Fecha de inicio</label>
+                <input class="form-control " type="date" name="start" id="start" value="{{ course_data.start|toisoformat }}" required>
+            </div>
+            <div class="form-group col-sm-2">
+                <label for="end">Fecha de termino</label>
+                <input class="form-control" type="date" name="end" id="end" value="{{ course_data.end|toisoformat }}"}} required>
+            </div>
+        </div>
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-2">
+                <label for="cost">Costo del curso</label>
+                <input class="form-control" type="number" name="cost" id="cost" placeholder="Costo" value="{{ course_data.cost }}" required>
+            </div>
+        </div>
         <input type="text" name="etag" id="etag" value="{{ course_data._etag }}" required hidden>
-        <input type="submit" value="Guardar">
+        <div class="form-row justify-content-center">
+            <input class="btn btn-primary" type="submit" value="Guardar">
+        </div>
     </form>
 </body>

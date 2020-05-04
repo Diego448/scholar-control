@@ -5,26 +5,45 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
 </head>
 <body>
-    <h1>Agregar curso</h1>
+    <nav class="nav justify-content-end">
+        <a class="nav-item nav-link" href="{{ url_for('courses_directory') }}">Regresar</a>
+    </nav>
+    <h1 class="h1 text-center pb-4">Agregar curso</h1>
     <form method="POST">
-        <input type="text" name="name" id="name" placeholder="Nombre del curso" required>
-        <select name="teacher" id="teacher" required>
-            <option value="">Selecciona un profesor</option>
-            {% for teacher in teachers %}
+        <div class="row justify-content-center mb-2">
+            <input class="form-control col-sm-4" type="text" name="name" id="name" placeholder="Nombre del curso" required>
+        </div>
+        <div class="row justify-content-center mb-2">
+            <select class="form-control col-sm-4" name="teacher" id="teacher" required>
+                <option value="">Selecciona un profesor</option>
+                {% for teacher in teachers %}
                 <option value="{{ teacher._id }}">{{ teacher.firstname }}</option>
-            {% endfor %}
-        </select>
-        <label for="start">Fecha de inicio</label>
-        <input type="date" name="start" id="start" required>
-        <label for="end">Fecha de termino</label>
-        <input type="date" name="end" id="end" required>
-        <input type="number" name="cost" id="cost" placeholder="Costo" required>
-        <select name="status" id="status">
-            <option value="Programado">Programado</option>
-            <option value="Iniciado">Iniciado</option>
-            <option value="Terminado">Terminado</option>
-            <option value="Cancelado">Cancelado</option>
-        </select>
-        <input type="submit" value="Guardar">
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-row justify-content-center">
+            <div class="form-group col-sm-2">
+                <label class="col-form-label" for="start">Fecha de inicio</label>
+                <input class="form-control" type="date" name="start" id="start" required>
+            </div>
+            <div class="form-group col-sm-2">
+                <label class="col-form-label" for="end">Fecha de termino</label>
+                <input class="form-control" type="date" name="end" id="end" required>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-2">
+            <input class="form-control col-sm-4" type="number" name="cost" id="cost" placeholder="Costo" required>
+        </div>
+        <div class="row justify-content-center mb-2">        
+            <select class="form-control col-sm-4" name="status" id="status">
+                <option value="Programado">Programado</option>
+                <option value="Iniciado">Iniciado</option>
+                <option value="Terminado">Terminado</option>
+                <option value="Cancelado">Cancelado</option>
+            </select>
+        </div>
+        <div class="row justify-content-center">
+            <input class="btn btn-primary" type="submit" value="Guardar">
+        </div>
     </form>
 </body>

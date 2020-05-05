@@ -39,6 +39,9 @@ course_schema = {
         'type': 'string',
         'required': True
     },
+    'teacher_name': {
+        'type': 'string'
+    },
     'students':{
         'type': 'list',
         'default': []

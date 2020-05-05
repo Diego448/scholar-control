@@ -22,7 +22,7 @@
                 <select class="form-control" name="teacher" id="teacher" required>
                     <option value="">Selecciona un profesor</option>
                     {% for teacher in teachers %}
-                        <option value="{{ teacher._id }}">{{ teacher.firstname }}</option>
+                        <option value="{&quot;teacher&quot;: &quot;{{ teacher._id }}&quot;, &quot;teacher_name&quot;: &quot;{{ teacher.firstname }}&quot;}">{{ teacher.firstname }}</option>
                     {% endfor %}
                 </select>
             </div>

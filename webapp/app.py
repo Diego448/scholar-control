@@ -142,8 +142,9 @@ def courses_directory(courses={}):
 @app.route('/add/course', methods=['GET', 'POST'])
 def create_course():
     if request.method == 'POST':
-        new_course = {"name": request.form['name'], "teacher": request.form['teacher'],
-        "start":  get_formatted_date(request.form['start']), 
+        teacher_dict = json.loads(request.form['teacher'])
+        new_course = {"name": request.form['name'], "teacher": teacher_dict['teacher'], 
+        "teacher_name": teacher_dict['teacher_name'], "start":  get_formatted_date(request.form['start']), 
         "end": get_formatted_date(request.form['end']), "cost": request.form['cost'],
         "status": request.form['status']}
         add_course(new_course)
@@ -154,8 +155,9 @@ def create_course():
 @app.route('/edit/course/<course_id>', methods=['GET', 'POST'])
 def edit_course(course_id):
     if request.method == 'POST':
-        updated_course = {"name": request.form['name'], "teacher": request.form['teacher'],
-        "start":  get_formatted_date(request.form['start']), 
+        teacher_dict = json.loads(request.form['teacher'])
+        updated_course = {"name": request.form['name'], "teacher": teacher_dict['teacher'],
+        "teacher_name": teacher_dict['teacher_name'], "start":  get_formatted_date(request.form['start']), 
         "end": get_formatted_date(request.form['end']), "cost": request.form['cost'],
         "status": request.form['status']}
         update_course(course_id, request.form['etag'], updated_course)

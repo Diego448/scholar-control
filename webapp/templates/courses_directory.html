@@ -25,7 +25,7 @@
             {% for course in courses %}
                 <tr>
                     <td class="text-center">{{ course.name }}</td>
-                    <td class="text-center">{{ course.teacher }}</td>
+                    <td class="text-center">{{ course.teacher_name }}</td>
                     <td class="text-center">{{ course.start|string|toisoformat }}</td>
                     <td class="text-center">{{ course.end|string|toisoformat }}</td>
                     <td class="text-center">${{ course.cost }}</td>

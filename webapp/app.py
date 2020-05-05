@@ -147,8 +147,10 @@ def create_course():
         "teacher_name": teacher_dict['teacher_name'], "start":  get_formatted_date(request.form['start']), 
         "end": get_formatted_date(request.form['end']), "cost": request.form['cost'],
         "status": request.form['status']}
-        add_course(new_course)
-        return redirect(url_for('courses_directory'))
+        status = add_course(new_course)
+        if status in [200, 201]:
+            return redirect(url_for('courses_directory'))
+        return redirect(url_for('error_page'))
     teachers = get_teachers()
     return render_template("add_course.html", teachers=teachers['_items'])
 
@@ -160,8 +162,10 @@ def edit_course(course_id):
         "teacher_name": teacher_dict['teacher_name'], "start":  get_formatted_date(request.form['start']), 
         "end": get_formatted_date(request.form['end']), "cost": request.form['cost'],
         "status": request.form['status']}
-        update_course(course_id, request.form['etag'], updated_course)
-        return redirect(url_for('courses_directory'))
+        status = update_course(course_id, request.form['etag'], updated_course)
+        if status in [200, 201]:
+            return redirect(url_for('courses_directory'))
+        return redirect(url_for('error_page'))
     course_data = get_course_data(course_id)
     teachers = get_teachers()
     return render_template("edit_course.html", course_data=course_data, teachers=teachers['_items'])
@@ -255,3 +259,7 @@ def enrolled_students(course_id):
     course_data = get_course_data(course_id)
     student_list = course_data['students']
     return render_template("enrolled_students.html", students=student_list)
+
+@app.route('/error')
+def error_page():
+    return render_template("error.html")

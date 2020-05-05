@@ -209,8 +209,10 @@ def payments_registry():
 @app.route('/add/payment', methods=['GET', 'POST'])
 def register_payment():
     if request.method == 'POST':
-        new_payment = {'course': request.form['course'], 'student': request.form['student'],
-        'amount': request.form['amount'], 
+        payment_dict = json.loads(request.form['course'])
+        student_dict = json.loads(request.form['student'])
+        new_payment = {'course': payment_dict['course'], 'course_name': payment_dict['course_name'], 'student': student_dict['student'],
+        'student_name': student_dict['student_name'], 'amount': request.form['amount'], 
         'payment_date': get_formatted_date(request.form['payment_date'])}
         add_payment(new_payment)
         return redirect(url_for('payments_registry'))
@@ -221,15 +223,17 @@ def register_payment():
 @app.route('/registry/payments/<student_id>')
 def student_payments(student_id):
     payments = get_student_payments(student_id)
+    student = get_student_data(student_id)
     unique_courses = set(entry['course'] for entry in payments['_items'])
     courses = list(entry['course'] for entry in payments['_items'])
     summary = []
     for value in unique_courses:
         entry = {}
+        course_data = get_course_data(value)
         entry['amount'] = courses.count(value)
-        entry['course'] = value
+        entry['course'] = course_data['name']
         summary.append(entry)
-    return render_template("student_payments.html", payments=payments['_items'], student=student_id, summary=summary)
+    return render_template("student_payments.html", payments=payments['_items'], student=student, summary=summary)
 
 @app.route('/enroll/student/<student_id>', methods=['GET', 'POST'])
 def enroll_student(student_id):

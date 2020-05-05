@@ -23,8 +23,8 @@
         <tbody>
             {% for payment in payments %}
                 <tr>
-                    <td>{{ payment.student }}</td>
-                    <td>{{ payment.course }}</td>
+                    <td>{{ payment.student_name }}</td>
+                    <td>{{ payment.course_name }}</td>
                     <td>{{ payment.payment_date|string|toisoformat }}</td>
                     <td>${{ payment.amount }}</td>
                     <td><a href="#">Pointless button</a></td>

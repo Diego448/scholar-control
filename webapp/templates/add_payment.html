@@ -9,13 +9,13 @@
         <select name="course" id="course">
             <option value="">Selecciona un curso</option>
             {% for course in courses %}
-            <option value="{{ course._id }}">{{ course.name }}</option>
+            <option value="{&quot;course&quot;: &quot;{{ course._id }}&quot;, &quot;course_name&quot;: &quot;{{ course.name }}&quot;}">{{ course.name }}</option>
             {% endfor %}
         </select>
         <select name="student" id="student">
             <option value="">Selecciona un estudiante</option>
             {% for student in students %}
-            <option value="{{ student._id }}">{{ student.firstname + ' ' + student.lastname }}</option>
+            <option value="{&quot;student&quot;: &quot;{{ student._id }}&quot;, &quot;student_name&quot;: &quot;{{ student.firstname + ' ' + student.lastname}}&quot;}">{{ student.firstname + ' ' + student.lastname }}</option>
             {% endfor %}
         </select>
         <input type="number" name="amount" id="amount" placeholder="Cantidad" required>

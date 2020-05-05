@@ -10,7 +10,7 @@
             <li class="nav-item"><a class="nav-link" href="{{ url_for('homepage') }}">Inicio</a></li>
         </ul>
     </nav>
-    <h1 class="h1">Registro de pagos de {{ student }}</h1>
+    <h1 class="h1">Registro de pagos de {{ student.firstname }}</h1>
     <h3 class="h3 text-center">Resumen de pagos</h3>
     <table class="table table-sm">
         <thead class="thead-light">
@@ -45,8 +45,8 @@
         <tbody>
             {% for payment in payments %}
                 <tr>
-                    <td class="text-center">{{ payment.student }}</td>
-                    <td class="text-center">{{ payment.course }}</td>
+                    <td class="text-center">{{ payment.student_name }}</td>
+                    <td class="text-center">{{ payment.course_name }}</td>
                     <td class="text-center">{{ payment.payment_date|string|toisoformat }}</td>
                     <td class="text-center">${{ payment.amount }}</td>
                 </tr>

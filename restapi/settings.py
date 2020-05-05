@@ -93,10 +93,16 @@ payment_schema = {
         'minlength': 3,
         'required': True
     },
+    'course_name': {
+        'type': 'string'
+    },
     'student': {
         'type': 'string', 
         'minlength': 3,
         'required': True
+    },
+    'student_name': {
+        'type': 'string'
     },
     'amount': {
         'type': 'float',

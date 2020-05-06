@@ -5,29 +5,27 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('register_payment') }}">Agregar pago</a></li>
-        </ul>
+    <nav class="nav justify-content-end">
+        <a class="nav-item nav-link" href="{{ url_for('register_payment') }}">Agregar pago</a>  
     </nav>
-    <h1>Registro de pagos</h1>
-    <table>
-        <thead>
+    <h1 class="h1 text-center pb-2">Registro de pagos</h1>
+    <table class="table">
+        <thead class="thead-light">
             <tr>
-                <th>Estudiante</th>
-                <th>Curso</th>
-                <th>Fecha de pago</th>
-                <th>Cantidad</th>
-                <th>Acciones</th>
+                <th class="text-center">Estudiante</th>
+                <th class="text-center">Curso</th>
+                <th class="text-center">Fecha de pago</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Acciones</th>
             </tr>
         </thead>
         <tbody>
             {% for payment in payments %}
                 <tr>
                     <td>{{ payment.student_name }}</td>
-                    <td>{{ payment.course_name }}</td>
-                    <td>{{ payment.payment_date|string|toisoformat }}</td>
-                    <td>${{ payment.amount }}</td>
+                    <td class="text-center">{{ payment.course_name }}</td>
+                    <td class="text-center">{{ payment.payment_date|string|toisoformat }}</td>
+                    <td class="text-center">${{ payment.amount }}</td>
                     <td><a href="#">Pointless button</a></td>
                 </tr>
             {% endfor %}

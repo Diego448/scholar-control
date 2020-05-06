@@ -5,22 +5,40 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
 </head>
 <body>
-    <h1>Agregar Pago</h1>
+    <h1 class="h1 text-center pb-3">Agregar Pago</h1>
     <form method="POST">
-        <select name="course" id="course">
-            <option value="">Selecciona un curso</option>
-            {% for course in courses %}
-            <option value="{&quot;course&quot;: &quot;{{ course._id }}&quot;, &quot;course_name&quot;: &quot;{{ course.name }}&quot;}">{{ course.name }}</option>
-            {% endfor %}
-        </select>
-        <select name="student" id="student">
-            <option value="">Selecciona un estudiante</option>
-            {% for student in students %}
-            <option value="{&quot;student&quot;: &quot;{{ student._id }}&quot;, &quot;student_name&quot;: &quot;{{ student.firstname + ' ' + student.lastname}}&quot;}">{{ student.firstname + ' ' + student.lastname }}</option>
-            {% endfor %}
-        </select>
-        <input type="number" name="amount" id="amount" placeholder="Cantidad" required>
-        <input type="date" name="payment_date" id="payment_date" placeholder="Fecha de pago" required>
-        <input type="submit" value="Guardar">
+        <div class="form-row justify-content-center">
+            <div class="form-group col-md-2">
+                <label for="course">Curso</label>
+                <select class="form-control" name="course" id="course">
+                    <option value="">Selecciona un curso</option>
+                    {% for course in courses %}
+                    <option value="{&quot;course&quot;: &quot;{{ course._id }}&quot;, &quot;course_name&quot;: &quot;{{ course.name }}&quot;}">{{ course.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="student">Estudiante</label>
+                <select class="form-control" name="student" id="student">
+                    <option value="">Selecciona un estudiante</option>
+                    {% for student in students %}
+                    <option value="{&quot;student&quot;: &quot;{{ student._id }}&quot;, &quot;student_name&quot;: &quot;{{ student.firstname + ' ' + student.lastname}}&quot;}">{{ student.firstname + ' ' + student.lastname }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-row justify-content-center">
+            <div class="form-group col-md-2">
+                <label for="amount">Cantidad</label>
+                <input class="form-control" type="number" name="amount" id="amount" placeholder="Cantidad" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="payment_date">Fecha del pago</label>
+                <input class="form-control" type="date" name="payment_date" id="payment_date" placeholder="Fecha de pago" required>
+            </div>
+        </div>
+        <div class="form-row justify-content-center">
+            <input class="btn btn-primary" type="submit" value="Guardar">
+        </div>
     </form>
 </body>

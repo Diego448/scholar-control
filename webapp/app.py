@@ -221,7 +221,9 @@ def register_payment():
         'student_name': student_dict['student_name'], 'amount': request.form['amount'], 
         'payment_date': get_formatted_date(request.form['payment_date'])}
         add_payment(new_payment)
-        return redirect(url_for('payments_registry'))
+        if status in [200, 201]:
+            return redirect(url_for('payments_registry'))
+        return redirect(url_for('error_page'))
     students = get_students()
     courses = get_courses()
     return render_template("add_payment.html", students=students['_items'], courses=courses['_items'])

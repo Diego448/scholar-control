@@ -7,6 +7,9 @@
 <body>
     <nav class="nav justify-content-end">
         <a class="nav-item nav-link" href="{{ url_for('create_course') }}">Agregar curso</a>
+        <a class="pr-3 py-1" href="{{ url_for('homepage') }}">
+            <img src="{{ url_for('static', filename='house.svg') }}" width="25" height="25">
+        </a>
     </nav>
     <h1 class="h1 text-center">Control de cursos</h1>
     <table class="table table-striped">

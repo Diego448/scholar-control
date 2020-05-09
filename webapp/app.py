@@ -18,18 +18,14 @@ def get_student_data(id):
     return r.json()
 
 def add_student(data):
-    headers = {
-        'content-type': 'application/json'
-    }
-    requests.post('http://127.0.0.1:5000/students', json=data, headers=headers)
+    headers = {'content-type': 'application/json'}
+    r = requests.post('http://127.0.0.1:5000/students', json=data, headers=headers)
+    return r.status_code
 
 def update_student(student_id, student_etag, data):
-    #current_data = get_student_data(student_id)
-    #etag = current_data['_etag']
-    headers = {
-        'content-type': 'application/json', 
-        'If-Match': str(student_etag)}
-    requests.patch('http://127.0.0.1:5000/students/' + student_id, json=data, headers=headers)
+    headers = {'content-type': 'application/json', 'If-Match': str(student_etag)}
+    r = requests.patch('http://127.0.0.1:5000/students/' + student_id, json=data, headers=headers)
+    return r.status_code
 
 def get_courses():
     r = requests.get(courses_resource_url)
@@ -111,8 +107,10 @@ def create_student():
         new_student = {'firstname': request.form['firstname'], 'lastname': request.form['lastname'],
         'location': request.form['location'], 'phone_number': request.form['phone_number'],
         'status': get_status(request.form)}
-        add_student(new_student)
-        return redirect(url_for('student_directory'))
+        status = add_student(new_student)
+        if status in [200, 201]:
+            return redirect(url_for('student_directory'))
+        return redirect(url_for('error_page')) 
     return render_template("add_student.html")
 
 @app.route('/edit/student/<student_id>', methods=['GET', 'POST'])
@@ -121,8 +119,10 @@ def edit_student(student_id):
         updated_data = {'firstname': request.form['firstname'], 'lastname': request.form['lastname'], 
         'location': request.form['location'], 'phone_number': request.form['phone_number'], 
         'status': get_status(request.form)}
-        update_student(student_id, request.form['etag'], updated_data)
-        return redirect(url_for('student_directory'))
+        status = update_student(student_id, request.form['etag'], updated_data)
+        if status in [200, 201]:
+            return redirect(url_for('student_directory'))
+        return redirect(url_for('error_page'))     
     student_data = get_student_data(student_id)
     return render_template("edit_student.html", student_data=student_data)
 
@@ -188,8 +188,10 @@ def add_teachers():
         new_teacher = {'firstname': request.form['firstname'], 'lastname': request.form['lastname'],
         'students_number': request.form['students_number'], 'phone_number': request.form['phone_number'],
         'status': request.form['status']}
-        add_teacher(new_teacher)
-        return redirect(url_for('teachers_directory'))
+        status = add_teacher(new_teacher)
+        if status in [200, 201]:
+           return redirect(url_for('teachers_directory'))
+        return redirect(url_for('error_page'))  
     return render_template("add_teacher.html")
 
 @app.route('/edit/teacher/<teacher_id>', methods=['GET', 'POST'])
@@ -197,8 +199,10 @@ def edit_teacher(teacher_id):
     if request.method == 'POST':
         updated_data = {'firstname': request.form['firstname'], 'lastname': request.form['lastname'], 
         'phone_number': request.form['phone_number'], 'status': request.form['status']}
-        update_teacher(teacher_id, request.form['etag'], updated_data)
-        return redirect(url_for('teachers_directory'))
+        status = update_teacher(teacher_id, request.form['etag'], updated_data)
+        if status in [200, 201]:
+            return redirect(url_for('teachers_directory'))
+        return redirect(url_for('error_page'))   
     teacher_data = get_teacher_data(teacher_id)
     return render_template("edit_teacher.html", teacher_data=teacher_data)
 
@@ -220,7 +224,7 @@ def register_payment():
         new_payment = {'course': payment_dict['course'], 'course_name': payment_dict['course_name'], 'student': student_dict['student'],
         'student_name': student_dict['student_name'], 'amount': request.form['amount'], 
         'payment_date': get_formatted_date(request.form['payment_date'])}
-        add_payment(new_payment)
+        status = add_payment(new_payment)
         if status in [200, 201]:
             return redirect(url_for('payments_registry'))
         return redirect(url_for('error_page'))
@@ -251,8 +255,10 @@ def enroll_student(student_id):
         student_list = course['students']
         student_list.append(student_id)
         update_data = {"students": student_list}
-        update_course(course_id, course['_etag'], update_data)
-        return redirect(url_for('student_directory'))
+        status = update_course(course_id, course['_etag'], update_data)
+        if status in [200, 201]:
+            return redirect(url_for('student_directory'))
+        return redirect(url_for('error_page'))    
     courses = get_courses()    
     return render_template("enroll_student.html", courses=courses['_items'])
 

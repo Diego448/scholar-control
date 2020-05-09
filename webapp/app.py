@@ -265,7 +265,12 @@ def enroll_student(student_id):
 @app.route('/directory/courses/enrolled/<course_id>/')
 def enrolled_students(course_id):
     course_data = get_course_data(course_id)
-    student_list = course_data['students']
+    student_list = []
+    for student_id in course_data['students']:
+        student = get_student_data(student_id)
+        if 'firstname' in student:
+            student_list.append(student['firstname'] + ' ' + student['lastname'])
+        student_list.append('(Estudiante no encontrado)')
     return render_template("enrolled_students.html", students=student_list)
 
 @app.route('/error')
